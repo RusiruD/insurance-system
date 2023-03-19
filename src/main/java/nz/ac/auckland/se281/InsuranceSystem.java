@@ -14,18 +14,17 @@ public class InsuranceSystem {
   public void printDatabase() {
       // checks if array list of names of clients is empty and if 
       //so outputs a print statement saying the database has no profiles
-      if(names.isEmpty()){
+      if(names.isEmpty()) {
       
-        MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");  }
-
-        
+        MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");  
+      }
       else{
           // if the array list of names isnt empty it assigns a string variable to the size of the array list 
           String amount_of_names=Integer.toString(names.size());
           
            // checks if the size of the names array list is equal to 1 and if so prints the appropriate 
            //output statements as defined in the assignment document
-          if(names.size()==1){
+          if(names.size()==1) {
             MessageCli.PRINT_DB_POLICY_COUNT.printMessage(amount_of_names, "", ":");
             MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(amount_of_names,names.get(0), ages.get(0)," %s: %s, %s");
             
@@ -34,12 +33,11 @@ public class InsuranceSystem {
           // they are output according to a strict format where it goes space rank colon space there name comma and space and there age 
           else{
             MessageCli.PRINT_DB_POLICY_COUNT.printMessage(amount_of_names, "s", ":");
-            for(int i=0; i<names.size(); i++){
+            for(int i=0; i<names.size(); i++) {
               String rank=Integer.toString(i+1);
               MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(rank, names.get(i), ages.get(i)," %s: %s, %s");
   
             }
-  
           }
           
         }
@@ -60,11 +58,11 @@ public class InsuranceSystem {
       // checks if the age of the profile is greater than or equal to 0
       // if the name is already contained in the database
       // and if the username length is greater than or equal to 3 and if so adds the profile to the database
-      if (int_age>=0 && !names.contains(userName) && userName.length()>=3){
+      if (int_age>=0 && !names.contains(userName) && userName.length()>=3) {
         names.add(userName);
         ages.add(age);
         
-        MessageCli.PROFILE_CREATED.printMessage(userName, age,"New profile created for %s with age %s.");
+        MessageCli.PROFILE_CREATED.printMessage(userName , age ,"New profile created for %s with age %s.");
         //System.out.println("hdh");
         
         
@@ -76,16 +74,18 @@ public class InsuranceSystem {
       }
     //if the user name length is less than 3 characters an error message is printed
       else if(userName.length()<3) {
-        MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName,"'%s' is an invalid username, it should be at least 3 characters long. No profile was"+ " created.");}
+        MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName,"'%s' is an invalid username, it should be at least 3 characters long. No profile was"+ " created.");
+      }
       
       //if the age is less than 0 a error message is printed
-      else if(int_age<0){
-        MessageCli.INVALID_AGE.printMessage(age,userName,"'%s' is an invalid age, please provide a positive whole number only. No profile was created"+ " for %s.");}
+      else if(int_age<0) {
+        MessageCli.INVALID_AGE.printMessage(age,userName,"'%s' is an invalid age, please provide a positive whole number only. No profile was created"+ " for %s.");
+      }
       
         //if the username inputted is already in the database an error message is printed
-      else if(names.contains(userName)){
+      else if(names.contains(userName)) {
         MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName,"Usernames must be unique. No profile was created for '%s'.");
-    }
+      }
       
       
 
