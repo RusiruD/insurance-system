@@ -17,8 +17,9 @@ public class InsuranceSystem {
       if(names.isEmpty()){
       
         MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");  }
+
         
-        else{
+      else{
           // if the array list of names isnt empty it assigns a string variable to the size of the array list 
           String amount_of_names=Integer.toString(names.size());
           
@@ -29,13 +30,27 @@ public class InsuranceSystem {
             MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(amount_of_names,names.get(0), ages.get(0)," %s: %s, %s");
             
           }
+          //if the amount of profiles is greater than 1 the names and ages are output one after each other depending on the position they are in the databse as
+          // they are output according to a strict format where it goes space rank colon space there name comma and space and there age 
+          else{
+            MessageCli.PRINT_DB_POLICY_COUNT.printMessage(amount_of_names, "s", ":");
+            for(int i=0; i<names.size(); i++){
+              String rank=Integer.toString(i+1);
+              MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(rank, names.get(i), ages.get(i)," %s: %s, %s");
+  
+            }
+  
+          }
           
+        }
        
-    }}
+    }
   
      
     public void createNewProfile(String userName, String age) {
-    
+
+      // formats the inputted userName into titlecase where the first letter is capitalised only
+      userName=(userName.substring(0,1).toUpperCase()+ userName.substring(1,userName.length()).toLowerCase());
     
       
       
@@ -59,12 +74,22 @@ public class InsuranceSystem {
        
         
       }
+    //if the user name length is less than 3 characters an error message is printed
+      else if(userName.length()<3) {
+        MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName,"'%s' is an invalid username, it should be at least 3 characters long. No profile was"+ " created.");}
       
-        
-        
-  
-    }      
-        
+      //if the age is less than 0 a error message is printed
+      else if(int_age<0){
+        MessageCli.INVALID_AGE.printMessage(age,userName,"'%s' is an invalid age, please provide a positive whole number only. No profile was created"+ " for %s.");}
+      
+        //if the username inputted is already in the database an error message is printed
+      else if(names.contains(userName)){
+        MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName,"Usernames must be unique. No profile was created for '%s'.");
+    }
+      
+      
+
+  }
 
 
 
