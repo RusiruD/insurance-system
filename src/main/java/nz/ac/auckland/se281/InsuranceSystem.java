@@ -28,7 +28,6 @@ public class InsuranceSystem {
         MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "", ":");
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
             profileAmount, names.get(0), ages.get(0), " %s: %s, %s");
-
       }
       // if the amount of profiles is greater than 1 the names and ages are output one after each
       // other depending on the position they are in the databse as
@@ -67,7 +66,6 @@ public class InsuranceSystem {
       // System.out.println("hdh");
 
       // Profile =new Profile(userName, age);
-
     }
     // if the user name length is less than 3 characters an error message is printed
     else if (userName.length() < 3) {
