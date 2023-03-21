@@ -5,7 +5,8 @@ import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
   ArrayList<String> names = new ArrayList<String>();
-  ArrayList<String> ages = new ArrayList<String>();
+
+  ArrayList<Profile> profiles = new ArrayList<>();
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
@@ -27,7 +28,10 @@ public class InsuranceSystem {
       if (names.size() == 1) {
         MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "", ":");
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            profileAmount, names.get(0), ages.get(0), " %s: %s, %s");
+            profileAmount,
+            profiles.get(0).returnUserName(),
+            profiles.get(0).returnAge(),
+            " %s: %s, %s");
       }
       // if the amount of profiles is greater than 1 the names and ages are output one after each
       // other depending on the position they are in the databse as
@@ -38,7 +42,7 @@ public class InsuranceSystem {
         for (int i = 0; i < names.size(); i++) {
           String rank = Integer.toString(i + 1);
           MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-              rank, names.get(i), ages.get(i), " %s: %s, %s");
+              rank, profiles.get(i).returnUserName(), profiles.get(i).returnAge(), " %s: %s, %s");
         }
       }
     }
@@ -52,23 +56,26 @@ public class InsuranceSystem {
             + userName.substring(1, userName.length()).toLowerCase());
 
     // sets int_age to be a integer array equivalent to the string value age
-    int ageInteger = Integer.parseInt(age);
+    Profile newProfile = new Profile(userName, age);
+    // int ageInteger = Integer.parseInt(age);
     // checks if the age of the profile is greater than or equal to 0
     // if the name is already contained in the database
     // and if the username length is greater than or equal to 3 and if so adds the profile to the
     // database
-    if (ageInteger >= 0 && !names.contains(userName) && userName.length() >= 3) {
+    if (newProfile.returnIntAge() >= 0
+        && !names.contains(userName)
+        && newProfile.returnUserName().length() >= 3) {
       names.add(userName);
-      ages.add(age);
 
       MessageCli.PROFILE_CREATED.printMessage(
           userName, age, "New profile created for %s with age %s.");
       // System.out.println("hdh");
 
-      // Profile =new Profile(userName, age);
+      profiles.add(newProfile);
+
     }
     // if the user name length is less than 3 characters an error message is printed
-    else if (userName.length() < 3) {
+    else if (newProfile.returnUserName().length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(
           userName,
           "'%s' is an invalid username, it should be at least 3 characters long. No profile was"
@@ -76,7 +83,7 @@ public class InsuranceSystem {
     }
 
     // if the age is less than 0 a error message is printed
-    else if (ageInteger < 0) {
+    else if (newProfile.returnIntAge() < 0) {
       MessageCli.INVALID_AGE.printMessage(
           age,
           userName,
