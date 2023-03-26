@@ -31,12 +31,7 @@ public class InsuranceSystem {
         // displaying it
         if (profiles.get(0).returnProfileLoaded() == 1) {
           String asteriks = "*** ";
-          MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
-              asteriks,
-              profileAmount,
-              profiles.get(0).returnUserName(),
-              profiles.get(0).returnAge(),
-              " %s%s: %s, %s");
+          MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(asteriks,profileAmount,profiles.get(0).returnUserName(),profiles.get(0).returnAge()," %s%s: %s, %s");
         }
         // else if the profile isnt loaded the output message is displayed as normal
         else {
@@ -114,7 +109,7 @@ public class InsuranceSystem {
           userName,
           "'%s' is an invalid username, it should be at least 3 characters long. No profile was"
               + " created.");
-    }
+            }
 
     // if the age is less than 0 a error message is printed
     else if (newProfile.returnIntAge() < 0) {
@@ -123,7 +118,7 @@ public class InsuranceSystem {
           userName,
           "'%s' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for %s.");
-    }
+            }
 
     // if the username inputted is already in the database an error message is printed
     else if (contains == 1) {
@@ -194,7 +189,7 @@ public class InsuranceSystem {
         deleted = 1;
         MessageCli.PROFILE_DELETED.printMessage(userName, "Profile deleted for %s.");
         profiles.remove(i);
-      }
+        }
       // if the profile is found but is loaded it isnt deleted and a message is output
       else if (profiles.get(i).returnUserName().contains(userName)
           && profiles.get(i).returnProfileLoaded() == 1) {

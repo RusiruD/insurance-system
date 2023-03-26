@@ -32,14 +32,19 @@ public class Profile {
   }
   // loads the profile when called
   public void profileLoaded() {
+    
     this.loaded = 1;
   }
   // unloads the profile when called
+
   public void profileUnloaded() {
+
     this.loaded = 0;
   }
   // returns the loaded state of the profile
+
   public int returnProfileLoaded() {
+
     return this.loaded;
   }
 }
