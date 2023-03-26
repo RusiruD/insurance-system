@@ -106,8 +106,8 @@ public class InsuranceSystem {
           userName, age, "New profile created for %s with age %s.");
       // adds new user profile to profiles array
       profiles.add(newProfile);
-
     }
+
     // if the user name length is less than 3 characters an error message is printed
     else if (newProfile.returnUserName().length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(

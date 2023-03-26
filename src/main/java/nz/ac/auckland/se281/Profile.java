@@ -7,6 +7,7 @@ public class Profile {
   private int loaded;
 
   public Profile(String userName, String age, int loaded) {
+
     this.loaded = loaded;
     this.userName = userName;
     this.age = age;
