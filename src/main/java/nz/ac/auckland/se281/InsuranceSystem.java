@@ -40,6 +40,7 @@ public class InsuranceSystem {
         MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "s", ":");
         for (int i = 0; i < profiles.size(); i++) {
           String rank = Integer.toString(i + 1);
+
           MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
               rank, profiles.get(i).returnUserName(), profiles.get(i).returnAge(), " %s: %s, %s");
         }
@@ -54,27 +55,28 @@ public class InsuranceSystem {
         (userName.substring(0, 1).toUpperCase()
             + userName.substring(1, userName.length()).toLowerCase());
 
-    // sets int_age to be a integer array equivalent to the string value age
-    Profile newProfile = new Profile(userName, age);
-    // int ageInteger = Integer.parseInt(age);
-    // checks if the age of the profile is greater than or equal to 0
-    // if the name is already contained in the database
-    // and if the username length is greater than or equal to 3 and if so adds the profile to the
-    // database
+    // creates new profile named newProfile with username and age inputted
+    Profile newProfile = new Profile(userName, age, 0);
+
+    // sets contains variable to 0
     int contains = 0;
+    // checks if the username has ever been inputted into the database previously
     for (int i = 0; i < profiles.size(); i++) {
       if (profiles.get(i).returnUserName().contains(newProfile.returnUserName())) {
         contains = 1;
       }
     }
-
+    // checks if the age of the profile is greater than or equal to 0
+    // if the name is already contained in the database
+    // and if the username length is greater than or equal to 3 and if so adds the profile to the
+    // database
     if (newProfile.returnIntAge() >= 0
         && contains == 0
         && newProfile.returnUserName().length() >= 3) {
 
       MessageCli.PROFILE_CREATED.printMessage(
           userName, age, "New profile created for %s with age %s.");
-
+      // adds new user profile to profiles array
       profiles.add(newProfile);
 
     }
@@ -99,20 +101,37 @@ public class InsuranceSystem {
     else if (contains == 1) {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(
           userName, "Usernames must be unique. No profile was created for '%s'.");
+
+    } else {
     }
   }
 
   public void loadProfile(String userName) {
+    userName =
+        (userName.substring(0, 1).toUpperCase()
+            + userName.substring(1, userName.length()).toLowerCase());
+    int loaded = 0;
+    for (int i = 0; i < profiles.size(); i++) {
+      if (userName.equals(profiles.get(i).returnUserName())) {
+        loaded = 1;
+        for (int j = 0; j < profiles.size(); j++) {
+          profiles.get(j).profileUnloaded();
+        }
+        profiles.get(i).profileLoaded();
+        MessageCli.PROFILE_LOADED.printMessage(userName, "Profile loaded for %s.");
+      }
+    }
+    if (loaded == 0) {
+      MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(
+          userName, "No profile found for %s. Profile not loaded.");
+    }
+
     // TODO: Complete this method.
   }
 
-  public void unloadProfile() {
-    // TODO: Complete this method.
-  }
+  public void unloadProfile() {}
 
-  public void deleteProfile(String userName) {
-    // TODO: Complete this method.
-  }
+  public void deleteProfile(String userName) {}
 
   public void createPolicy(PolicyType type, String[] options) {
     // TODO: Complete this method.
