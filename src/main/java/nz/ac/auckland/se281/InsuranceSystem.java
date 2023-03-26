@@ -163,7 +163,22 @@ public class InsuranceSystem {
     // TODO: Complete this method.
   }
 
-  public void unloadProfile() {}
+  public void unloadProfile() {
+    int profilesLoaded = 0;
+    // checks which profile is loaded currently so it can be unloaded
+    for (int j = 0; j < profiles.size(); j++) {
+      if (profiles.get(j).returnProfileLoaded() == 1) {
+        profilesLoaded = 1;
+        profiles.get(j).profileUnloaded();
+        MessageCli.PROFILE_UNLOADED.printMessage(
+            profiles.get(j).returnUserName(), "Profile unloaded for %s.");
+      }
+    }
+    // if no profile is loaded a message is output declaring this
+    if (profilesLoaded == 0) {
+      MessageCli.NO_PROFILE_LOADED.printMessage("No profile is currently loaded.");
+    }
+  }
 
   public void deleteProfile(String userName) {}
 
