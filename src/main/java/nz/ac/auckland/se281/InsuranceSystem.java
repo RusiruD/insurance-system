@@ -26,11 +26,26 @@ public class InsuranceSystem {
       // output statements as defined in the assignment document
       if (profiles.size() == 1) {
         MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "", ":");
-        MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            profileAmount,
-            profiles.get(0).returnUserName(),
-            profiles.get(0).returnAge(),
-            " %s: %s, %s");
+
+        // checks if the profiles its trying to print is loaded and if so prints asteriks before
+        // displaying it
+        if (profiles.get(0).returnProfileLoaded() == 1) {
+          String asteriks = "*** ";
+          MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
+              asteriks,
+              profileAmount,
+              profiles.get(0).returnUserName(),
+              profiles.get(0).returnAge(),
+              " %s%s: %s, %s");
+        }
+        // else if the profile isnt loaded the output message is displayed as normal
+        else {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
+              profileAmount,
+              profiles.get(0).returnUserName(),
+              profiles.get(0).returnAge(),
+              " %s: %s, %s");
+        }
       }
       // if the amount of profiles is greater than 1 the names and ages are output one after each
       // other depending on the position they are in the databse as
@@ -40,6 +55,19 @@ public class InsuranceSystem {
         MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "s", ":");
         for (int i = 0; i < profiles.size(); i++) {
           String rank = Integer.toString(i + 1);
+
+          // checks if the profiles its trying to print is loaded and if so prints asteriks before
+          // displaying it
+          if (profiles.get(i).returnProfileLoaded() == 1) {
+            String asteriks = "*** ";
+            MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
+                asteriks,
+                rank,
+                profiles.get(i).returnUserName(),
+                profiles.get(i).returnAge(),
+                " %s%s: %s, %s");
+            continue;
+          }
 
           MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
               rank, profiles.get(i).returnUserName(), profiles.get(i).returnAge(), " %s: %s, %s");
