@@ -107,13 +107,18 @@ public class InsuranceSystem {
   }
 
   public void loadProfile(String userName) {
+    // format username inputted by user to title case
     userName =
         (userName.substring(0, 1).toUpperCase()
             + userName.substring(1, userName.length()).toLowerCase());
+
     int loaded = 0;
+    // iterate through array list of profiles to find the correct profile to load
     for (int i = 0; i < profiles.size(); i++) {
       if (userName.equals(profiles.get(i).returnUserName())) {
         loaded = 1;
+
+        // unloads all previously loaded profiles
         for (int j = 0; j < profiles.size(); j++) {
           profiles.get(j).profileUnloaded();
         }
@@ -121,6 +126,7 @@ public class InsuranceSystem {
         MessageCli.PROFILE_LOADED.printMessage(userName, "Profile loaded for %s.");
       }
     }
+    // outputs message if not profile is found to load
     if (loaded == 0) {
       MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(
           userName, "No profile found for %s. Profile not loaded.");
