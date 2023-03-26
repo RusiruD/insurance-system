@@ -5,7 +5,7 @@ public class Profile {
   private String userName;
   private String age;
   private int loaded;
-  // private ArrayList<String> names= new ArrayList<String>();
+
   public Profile(String userName, String age, int loaded) {
     this.loaded = loaded;
     this.userName = userName;
@@ -29,15 +29,15 @@ public class Profile {
     int ageInteger = Integer.parseInt(age);
     return ageInteger;
   }
-
+  // loads the profile when called
   public void profileLoaded() {
     this.loaded = 1;
   }
-
+  // unloads the profile when called
   public void profileUnloaded() {
     this.loaded = 0;
   }
-
+  // returns the loaded state of the profile
   public int returnProfileLoaded() {
     return this.loaded;
   }
