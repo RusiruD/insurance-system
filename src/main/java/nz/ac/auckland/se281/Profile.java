@@ -26,13 +26,16 @@ public class Profile {
     return userName;
   }
 
+  //returns the age converted to an integer
   public int returnIntAge() {
+
     int ageInteger = Integer.parseInt(age);
+
     return ageInteger;
   }
   // loads the profile when called
   public void profileLoaded() {
-    
+
     this.loaded = 1;
   }
   // unloads the profile when called
