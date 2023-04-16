@@ -143,6 +143,26 @@ public class InsuranceSystem {
             } else {
             }
           }
+          for (int l = 0; l < lifepolicyspositions.size(); l++) {
+            if (lifePolicies.get(lifepolicyspositions.get(l)).returnorder() == k) {
+              MessageCli.PRINT_DB_LIFE_POLICY.printMessage(
+                  lifePolicies.get(lifepolicyspositions.get(l)).returnSumInsured(),
+                  lifePolicies.get(lifepolicyspositions.get(l)).returnPremium(),
+                  lifePolicies.get(lifepolicyspositions.get(l)).returnDiscountedPremium(),
+                  "\tLife Policy (Sum Insured: $%s, Premium: $%s -> $%s)");
+            }
+          }
+
+          for (int l = 0; l < homepolicyspositions.size(); l++) {
+            if (homePolicies.get(homepolicyspositions.get(l)).returnorder() == k) {
+              MessageCli.PRINT_DB_HOME_POLICY.printMessage(
+                  homePolicies.get(homepolicyspositions.get(l)).returnAdress(),
+                  homePolicies.get(homepolicyspositions.get(l)).returnSumInsured(),
+                  homePolicies.get(homepolicyspositions.get(l)).returnPremium(),
+                  homePolicies.get(homepolicyspositions.get(l)).returnDiscountedPremium(),
+                  "\tHome Policy (%s, Sum Insured: $%s, Premium: $%s -> $%s)");
+            }
+          }
         }
       }
     }

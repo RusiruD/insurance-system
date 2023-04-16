@@ -16,17 +16,15 @@ public class homePolicy extends policies {
     this.adress = adress;
     this.rental = rental;
     this.amountPolicies = amountPolicies;
-    this.order=order;
+    this.order = order;
   }
+
   public int returnorder() {
     return order;
   }
+
   public String returnName() {
     return name;
-  }
-
-  public String returnSumInsured() {
-    return sumInsured;
   }
 
   public String returnAdress() {

@@ -24,10 +24,6 @@ public class lifePolicy extends policies {
     return order;
   }
 
-  public String returnSumInsured() {
-    return sumInsured;
-  }
-
   public void amountPolicies(int n) {
     amountPolicies = n;
   }

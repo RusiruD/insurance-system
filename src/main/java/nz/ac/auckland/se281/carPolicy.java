@@ -42,14 +42,6 @@ public class carPolicy extends policies {
     amountPolicies = n;
   }
 
-  public String returnSumInsured() {
-    return sumInsured;
-  }
-
-  public String returnlicencePlate() {
-    return licencePlate;
-  }
-
   public String returnPremium() {
     double premium = -1;
     int breakdownCover = 0;
@@ -119,9 +111,5 @@ public class carPolicy extends policies {
 
   public String returnmakeModel() {
     return makeModel;
-  }
-
-  public String returnBreakdown() {
-    return breakdown;
   }
 }
