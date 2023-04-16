@@ -8,7 +8,7 @@ public class InsuranceSystem {
 
   // create array lists which will contain profiles and policies
   ArrayList<Profile> profiles;
-  ArrayList<CarPolicy> carPolicies;
+  ArrayList<carPolicy> carPolicies;
   ArrayList<homePolicy> homePolicies;
   ArrayList<lifePolicy> lifePolicies;
 
@@ -352,8 +352,8 @@ public class InsuranceSystem {
       }
       if (typeString.equals("car")) {
         profiles.get(profileNumber).addedPolicy();
-        CarPolicy policy =
-            new CarPolicy(
+        carPolicy policy =
+            new carPolicy(
                 userName,
                 options[0],
                 options[1],
