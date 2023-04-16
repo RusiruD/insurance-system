@@ -1,13 +1,11 @@
 package nz.ac.auckland.se281;
 
-public class lifePolicy extends InsurancePolicies {
-  
-  
-  private String age;
+public class LifeInsurance extends InsurancePolicies {
+    private String age;
   private int amountPolicies;
  
 
-  public lifePolicy(String age, String name, String sumInsured, int amountPolicies, int order) {
+  public LifeInsurance(String age, String name, String sumInsured, int amountPolicies, int order) {
     super(sumInsured,name,order);
    
    
@@ -75,3 +73,6 @@ public class lifePolicy extends InsurancePolicies {
     return (int) discountedPremium;
   }
 }
+
+    
+
