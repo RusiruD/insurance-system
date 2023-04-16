@@ -1,17 +1,27 @@
 package nz.ac.auckland.se281;
 
+import java.util.*;
 import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
-  ArrayList<Profile> profiles = new ArrayList<>();
+  // create array lists which will contain profiles and policies
+  ArrayList<Profile> profiles;
+  ArrayList<carPolicy> carPolicies;
+  ArrayList<homePolicy> homePolicies;
+  ArrayList<lifePolicy> lifePolicies;
 
   public InsuranceSystem() {
+    profiles = new ArrayList<>();
+    carPolicies = new ArrayList<>();
+    homePolicies = new ArrayList<>();
+    lifePolicies = new ArrayList<>();
     // Only this constructor can be used (if you need to initialise fields).
   }
 
   public void printDatabase() {
+
     // checks if array list of names of clients is empty and if
     // so outputs a print statement saying the database has no profiles
     if (profiles.isEmpty()) {
@@ -22,50 +32,117 @@ public class InsuranceSystem {
       // list
       String profileAmount = Integer.toString(profiles.size());
 
-      // checks if the size of the names array list is equal to 1 and if so prints the appropriate
-      // output statements as defined in the assignment document
+      // checks if the size of the names array list is equal to 1 and if so sets a variable so that
+      // output statements are grammatically accurate
+      String pluralProfiles = "s";
       if (profiles.size() == 1) {
-        MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "", ":");
+        pluralProfiles = "";
 
-        // checks if the profiles its trying to print is loaded and if so prints asteriks before
-        // displaying it
-        if (profiles.get(0).returnProfileLoaded() == 1) {
-          String asteriks = "*** ";
-          MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(asteriks,profileAmount,profiles.get(0).returnUserName(),profiles.get(0).returnAge()," %s%s: %s, %s");
-        }
-        // else if the profile isnt loaded the output message is displayed as normal
-        else {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-              profileAmount,
-              profiles.get(0).returnUserName(),
-              profiles.get(0).returnAge(),
-              " %s: %s, %s");
-        }
+      } else {
       }
-      // if the amount of profiles is greater than 1 the names and ages are output one after each
-      // other depending on the position they are in the databse as
-      // they are output according to a strict format where it goes space rank colon space there
-      // name comma and space and there age
-      else {
-        MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, "s", ":");
-        for (int i = 0; i < profiles.size(); i++) {
-          String rank = Integer.toString(i + 1);
+      // amount of profiles in database is printed
 
-          // checks if the profiles its trying to print is loaded and if so prints asteriks before
-          // displaying it
-          if (profiles.get(i).returnProfileLoaded() == 1) {
-            String asteriks = "*** ";
-            MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
-                asteriks,
-                rank,
-                profiles.get(i).returnUserName(),
-                profiles.get(i).returnAge(),
-                " %s%s: %s, %s");
-            continue;
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, pluralProfiles, ":");
+
+      // for loop goes through every profile in the profiles array
+      for (int i = 0; i < profiles.size(); i++) {
+
+        String rank = Integer.toString(i + 1);
+        String asteriks = "";
+        String pluralPolicies = "ies";
+
+        // checks if the profiles its trying to print is loaded and if so sets a variable so
+        // asteriks
+        // are outputted in print statement
+        if (profiles.get(i).returnProfileLoaded() == 1) {
+          asteriks = "*** ";
+        }
+
+        // checks if the profile its found has only 1 insurance policy and if so sets string
+        // variable so output statement is grammatically correct
+        if (profiles.get(i).returnpolicies() == 1) {
+          pluralPolicies = "y";
+        }
+
+        // 3 array lists are created which will contain the positions within the respective policy
+        // type array list the profiles policy is in
+        ArrayList<Integer> carpolicyspositions = new ArrayList<>();
+        ArrayList<Integer> lifepolicyspositions = new ArrayList<>();
+        ArrayList<Integer> homepolicyspositions = new ArrayList<>();
+
+        int totalPremium = 0;
+        // sets variable stating the amount of policies the profile has into each policys class
+
+        // checks if the profile has any home policies so it can add the cost to the profiles total
+        // premium
+        // and to add the position of this home policy position to an array
+        for (int k = 0; k < homePolicies.size(); k++) {
+
+          if (homePolicies.get(k).returnName().equals(profiles.get(i).returnUserName())) {
+            homePolicies
+                .get(k)
+                .amountPolicies(Integer.parseInt(profiles.get(i).returnPoliciesString()));
+            homepolicyspositions.add(k);
+
+            totalPremium = totalPremium + homePolicies.get(k).returnDiscountedPremiumInt();
           }
+        }
+        // checks if the profile has any life policies so it can add the cost to the profiles total
+        // premium
+        // and to add the position of this life policy position to an array
+        for (int k = 0; k < lifePolicies.size(); k++) {
 
-          MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-              rank, profiles.get(i).returnUserName(), profiles.get(i).returnAge(), " %s: %s, %s");
+          if (lifePolicies.get(k).returnName().equals(profiles.get(i).returnUserName())) {
+            lifePolicies
+                .get(k)
+                .amountPolicies(Integer.parseInt(profiles.get(i).returnPoliciesString()));
+            lifepolicyspositions.add(k);
+
+            totalPremium = totalPremium + lifePolicies.get(k).returnDiscountedPremiumInt();
+          }
+        }
+        // checks if the profile has any car policies so it can add the cost to the profiles total
+        // premium
+        // and to add the position of this car policy position to an array
+        for (int k = 0; k < carPolicies.size(); k++) {
+
+          if (carPolicies.get(k).returnName().equals(profiles.get(i).returnUserName())) {
+            carPolicies
+                .get(k)
+                .amountPolicies(Integer.parseInt(profiles.get(i).returnPoliciesString()));
+            carpolicyspositions.add(k);
+
+            totalPremium = totalPremium + carPolicies.get(k).returnDiscountedPremiumInt();
+          }
+        }
+        // the name,age,amount of policies and total premium are printed out
+        MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
+            asteriks,
+            rank,
+            profiles.get(i).returnUserName(),
+            profiles.get(i).returnAge(),
+            profiles.get(i).returnPoliciesString(),
+            pluralPolicies,
+            Integer.toString(totalPremium),
+            " %s%s: %s, %s, %s polic%s for a total of $%s");
+
+        // the details of the policys the profile has are printed out
+        for (int k = 1; k < profiles.get(i).returnpolicies() + 1; k++) {
+
+          for (int l = 0; l < carpolicyspositions.size(); l++) {
+
+            if (carPolicies.get(carpolicyspositions.get(l)).returnorder() == k) {
+
+              MessageCli.PRINT_DB_CAR_POLICY.printMessage(
+                  carPolicies.get(carpolicyspositions.get(l)).returnmakeModel(),
+                  carPolicies.get(carpolicyspositions.get(l)).returnSumInsured(),
+                  carPolicies.get(carpolicyspositions.get(l)).returnPremium(),
+                  carPolicies.get(carpolicyspositions.get(l)).returnDiscountedPremium(),
+                  "\tCar Policy (%s, Sum Insured: $%s, Premium: $%s -> $%s)");
+
+            } else {
+            }
+          }
         }
       }
     }
@@ -79,10 +156,11 @@ public class InsuranceSystem {
             + userName.substring(1, userName.length()).toLowerCase());
 
     // creates new profile named newProfile with username and age inputted
-    Profile newProfile = new Profile(userName, age, 0);
+    Profile newProfile = new Profile(userName, age, 0, 0);
 
     // sets contains variable to 0
     int contains = 0;
+
     // checks if the username has ever been inputted into the database previously
     for (int i = 0; i < profiles.size(); i++) {
       if (profiles.get(i).returnUserName().contains(newProfile.returnUserName())) {
@@ -109,7 +187,7 @@ public class InsuranceSystem {
           userName,
           "'%s' is an invalid username, it should be at least 3 characters long. No profile was"
               + " created.");
-            }
+    }
 
     // if the age is less than 0 a error message is printed
     else if (newProfile.returnIntAge() < 0) {
@@ -118,7 +196,7 @@ public class InsuranceSystem {
           userName,
           "'%s' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for %s.");
-            }
+    }
 
     // if the username inputted is already in the database an error message is printed
     else if (contains == 1) {
@@ -145,6 +223,7 @@ public class InsuranceSystem {
         for (int j = 0; j < profiles.size(); j++) {
           profiles.get(j).profileUnloaded();
         }
+        // loads profile with the inputted username
         profiles.get(i).profileLoaded();
         MessageCli.PROFILE_LOADED.printMessage(userName, "Profile loaded for %s.");
       }
@@ -154,8 +233,6 @@ public class InsuranceSystem {
       MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(
           userName, "No profile found for %s. Profile not loaded.");
     }
-
-    // TODO: Complete this method.
   }
 
   public void unloadProfile() {
@@ -176,6 +253,7 @@ public class InsuranceSystem {
   }
 
   public void deleteProfile(String userName) {
+
     // format username inputted into titelcase
     userName =
         (userName.substring(0, 1).toUpperCase()
@@ -189,7 +267,7 @@ public class InsuranceSystem {
         deleted = 1;
         MessageCli.PROFILE_DELETED.printMessage(userName, "Profile deleted for %s.");
         profiles.remove(i);
-        }
+      }
       // if the profile is found but is loaded it isnt deleted and a message is output
       else if (profiles.get(i).returnUserName().contains(userName)
           && profiles.get(i).returnProfileLoaded() == 1) {
@@ -205,6 +283,95 @@ public class InsuranceSystem {
   }
 
   public void createPolicy(PolicyType type, String[] options) {
-    // TODO: Complete this method.
+
+    int profilesLoaded = 0;
+    String userName = " ";
+
+    // converts inputted policy type to lowercase
+    String typeString = type.toString().toLowerCase();
+
+    // finds the loaded profile and records its position
+    int profileNumber = 0;
+    for (int j = 0; j < profiles.size(); j++) {
+      if (profiles.get(j).returnProfileLoaded() == 1) {
+        profilesLoaded = 1;
+        userName = profiles.get(j).returnUserName();
+        profileNumber = j;
+      }
+    }
+
+    // if no profile is loaded an error message is outputted
+    if (profilesLoaded == 0) {
+      MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage(
+          "Need to load a profile in order to create a policy.");
+
+      // if the policy type is a life policy and the user is above 100 a error message is output
+    } else if (profiles.get(profileNumber).returnIntAge() > 100 && typeString.equals("life")) {
+      MessageCli.OVER_AGE_LIMIT_LIFE_POLICY.printMessage(
+          userName, "%s is over the age limit. No policy was created.");
+      return;
+
+    }
+    // else a new policy is created
+    else {
+      MessageCli.NEW_POLICY_CREATED.printMessage(
+          typeString, userName, "New %s policy created for %s.");
+
+      // a new instance of a class is created for each policy
+      if (typeString.equals("home")) {
+        profiles.get(profileNumber).addedPolicy();
+        homePolicy policy =
+            new homePolicy(
+                userName,
+                options[0],
+                options[1],
+                options[2],
+                0,
+                profiles.get(profileNumber).returnpolicies());
+        homePolicies.add(policy);
+      }
+      if (typeString.equals("car")) {
+        profiles.get(profileNumber).addedPolicy();
+        carPolicy policy =
+            new carPolicy(
+                userName,
+                options[0],
+                options[1],
+                options[2],
+                options[3],
+                0,
+                profiles.get(profileNumber).returnIntAge(),
+                profiles.get(profileNumber).returnpolicies());
+        carPolicies.add(policy);
+      }
+
+      // checks if the user already hads a life policy
+      int contains = 0;
+      for (int i = 0; i < lifePolicies.size(); i++) {
+        if (lifePolicies
+            .get(i)
+            .returnName()
+            .contains(profiles.get(profileNumber).returnUserName())) {
+          contains = 1;
+        }
+      }
+      // a new life policy is created only if a previous one doesnt exist
+      if (typeString.equals("life") && contains == 0) {
+        profiles.get(profileNumber).addedPolicy();
+        lifePolicy policy =
+            new lifePolicy(
+                profiles.get(profileNumber).returnAge(),
+                userName,
+                options[0],
+                0,
+                profiles.get(profileNumber).returnpolicies());
+
+        lifePolicies.add(policy);
+      } else if (typeString.equals("life") && contains == 1) {
+        MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(
+            profiles.get(profileNumber).returnUserName(),
+            "%s already has a life policy. No new policy was created.");
+      }
+    }
   }
 }
