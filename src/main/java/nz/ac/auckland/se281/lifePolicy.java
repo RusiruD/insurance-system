@@ -1,13 +1,13 @@
 package nz.ac.auckland.se281;
 
-public class lifePolicy extends Policies {
+public class LifePolicy extends Policies {
   private String name;
   private String sumInsured;
   private String age;
   private int amountPolicies;
   private int order;
 
-  public lifePolicy(String age, String name, String sumInsured, int amountPolicies, int order) {
+  public LifePolicy(String age, String name, String sumInsured, int amountPolicies, int order) {
     super(sumInsured);
     this.name = name;
     this.sumInsured = sumInsured;

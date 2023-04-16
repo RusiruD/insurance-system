@@ -8,9 +8,9 @@ public class InsuranceSystem {
 
   // create array lists which will contain profiles and policies
   ArrayList<Profile> profiles;
-  ArrayList<carPolicy> carPolicies;
-  ArrayList<homePolicy> homePolicies;
-  ArrayList<lifePolicy> lifePolicies;
+  ArrayList<CarPolicy> carPolicies;
+  ArrayList<HomePolicy> homePolicies;
+  ArrayList<LifePolicy> lifePolicies;
 
   public InsuranceSystem() {
     profiles = new ArrayList<>();
@@ -338,8 +338,8 @@ public class InsuranceSystem {
       // a new instance of a class is created for each policy
       if (typeString.equals("home")) {
         profiles.get(profileNumber).addedPolicy();
-        homePolicy policy =
-            new homePolicy(
+        HomePolicy policy =
+            new HomePolicy(
                 userName,
                 options[0],
                 options[1],
@@ -350,8 +350,8 @@ public class InsuranceSystem {
       }
       if (typeString.equals("car")) {
         profiles.get(profileNumber).addedPolicy();
-        carPolicy policy =
-            new carPolicy(
+        CarPolicy policy =
+            new CarPolicy(
                 userName,
                 options[0],
                 options[1],
@@ -376,8 +376,8 @@ public class InsuranceSystem {
       // a new life policy is created only if a previous one doesnt exist
       if (typeString.equals("life") && contains == 0) {
         profiles.get(profileNumber).addedPolicy();
-        lifePolicy policy =
-            new lifePolicy(
+        LifePolicy policy =
+            new LifePolicy(
                 profiles.get(profileNumber).returnAge(),
                 userName,
                 options[0],
