@@ -199,7 +199,7 @@ public class InsuranceSystem {
           userName, age, "New profile created for %s with age %s.");
       // adds new user profile to profiles array
       profiles.add(newProfile);
-    }
+      }
 
     // if the user name length is less than 3 characters an error message is printed
     else if (newProfile.returnUserName().length() < 3) {
@@ -207,7 +207,7 @@ public class InsuranceSystem {
           userName,
           "'%s' is an invalid username, it should be at least 3 characters long. No profile was"
               + " created.");
-    }
+      }
 
     // if the age is less than 0 a error message is printed
     else if (newProfile.returnIntAge() < 0) {
@@ -216,7 +216,7 @@ public class InsuranceSystem {
           userName,
           "'%s' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for %s.");
-    }
+      }
 
     // if the username inputted is already in the database an error message is printed
     else if (contains == 1) {
@@ -287,7 +287,7 @@ public class InsuranceSystem {
         deleted = 1;
         MessageCli.PROFILE_DELETED.printMessage(userName, "Profile deleted for %s.");
         profiles.remove(i);
-      }
+        }
       // if the profile is found but is loaded it isnt deleted and a message is output
       else if (profiles.get(i).returnUserName().contains(userName)
           && profiles.get(i).returnProfileLoaded() == 1) {
@@ -331,7 +331,7 @@ public class InsuranceSystem {
           userName, "%s is over the age limit. No policy was created.");
       return;
 
-    }
+      }
     // else a new policy is created
     else {
       MessageCli.NEW_POLICY_CREATED.printMessage(
