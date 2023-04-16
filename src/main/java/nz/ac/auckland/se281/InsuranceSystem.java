@@ -7,7 +7,7 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class InsuranceSystem {
 
   // create array lists which will contain profiles and policies
-  ArrayList<profile> profiles;
+  ArrayList<Profile> profiles;
   ArrayList<carPolicy> carPolicies;
   ArrayList<homePolicy> homePolicies;
   ArrayList<lifePolicy> lifePolicies;
@@ -176,7 +176,7 @@ public class InsuranceSystem {
             + userName.substring(1, userName.length()).toLowerCase());
 
     // creates new profile named newProfile with username and age inputted
-    profile newProfile = new profile(userName, age, 0, 0);
+    Profile newProfile = new Profile(userName, age, 0, 0);
 
     // sets contains variable to 0
     int contains = 0;
