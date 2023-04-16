@@ -1,28 +1,24 @@
 package nz.ac.auckland.se281;
 
-public class lifePolicy extends policies {
-  private String name;
-  private String sumInsured;
+public class lifePolicy extends InsurancePolicies {
+  
+  
   private String age;
   private int amountPolicies;
-  private int order;
+ 
 
   public lifePolicy(String age, String name, String sumInsured, int amountPolicies, int order) {
-    super(sumInsured);
-    this.name = name;
-    this.sumInsured = sumInsured;
+    super(sumInsured,name,order);
+   
+   
     this.age = age;
     this.amountPolicies = amountPolicies;
-    this.order = order;
+    
   }
 
-  public String returnName() {
-    return name;
-  }
+  
 
-  public int returnorder() {
-    return order;
-  }
+  
 
   public void amountPolicies(int n) {
     amountPolicies = n;

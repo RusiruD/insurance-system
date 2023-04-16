@@ -1,14 +1,14 @@
 package nz.ac.auckland.se281;
 
-public class carPolicy extends policies {
-  private String name;
-  private String sumInsured;
+public class carPolicy extends InsurancePolicies {
+  
+ 
   private String makeModel;
   private String licencePlate;
   private String breakdown;
   private int amountPolicies;
   private int age;
-  private int order;
+  
 
   public carPolicy(
       String name,
@@ -19,24 +19,20 @@ public class carPolicy extends policies {
       int amountPolicies,
       int age,
       int order) {
-    super(sumInsured);
-    this.name = name;
-    this.sumInsured = sumInsured;
+    super(sumInsured,name,order);
+    
+    
     this.makeModel = makeModel;
     this.licencePlate = licencePlate;
     this.breakdown = breakdown;
     this.amountPolicies = amountPolicies;
     this.age = age;
-    this.order = order;
+    
   }
 
-  public String returnName() {
-    return name;
-  }
+ 
 
-  public int returnorder() {
-    return order;
-  }
+  
 
   public void amountPolicies(int n) {
     amountPolicies = n;
