@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-import java.util.*;
+
 import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
@@ -131,7 +131,7 @@ public class InsuranceSystem {
 
           for (int l = 0; l < carpolicyspositions.size(); l++) {
 
-            if (carPolicies.get(carpolicyspositions.get(l)).returnorder() == k) {
+            if (carPolicies.get(carpolicyspositions.get(l)).returnOrder() == k) {
 
               MessageCli.PRINT_DB_CAR_POLICY.printMessage(
                   carPolicies.get(carpolicyspositions.get(l)).returnmakeModel(),
@@ -144,7 +144,7 @@ public class InsuranceSystem {
             }
           }
           for (int l = 0; l < lifepolicyspositions.size(); l++) {
-            if (lifePolicies.get(lifepolicyspositions.get(l)).returnorder() == k) {
+            if (lifePolicies.get(lifepolicyspositions.get(l)).returnOrder() == k) {
               MessageCli.PRINT_DB_LIFE_POLICY.printMessage(
                   lifePolicies.get(lifepolicyspositions.get(l)).returnSumInsured(),
                   lifePolicies.get(lifepolicyspositions.get(l)).returnPremium(),
@@ -154,7 +154,7 @@ public class InsuranceSystem {
           }
 
           for (int l = 0; l < homepolicyspositions.size(); l++) {
-            if (homePolicies.get(homepolicyspositions.get(l)).returnorder() == k) {
+            if (homePolicies.get(homepolicyspositions.get(l)).returnOrder() == k) {
               MessageCli.PRINT_DB_HOME_POLICY.printMessage(
                   homePolicies.get(homepolicyspositions.get(l)).returnAdress(),
                   homePolicies.get(homepolicyspositions.get(l)).returnSumInsured(),

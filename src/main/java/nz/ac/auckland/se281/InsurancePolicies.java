@@ -7,7 +7,7 @@ public abstract class InsurancePolicies extends Object {
   protected int amountPolicies;
 
   public InsurancePolicies(String sumInsured, String name, int order, int amountPolicies) {
-    this.amountPolicies=amountPolicies;
+    this.amountPolicies = amountPolicies;
     this.sumInsured = sumInsured;
     this.name = name;
     this.order = order;
@@ -25,10 +25,13 @@ public abstract class InsurancePolicies extends Object {
     return name;
   }
 
-  public int returnorder() {
+  public int returnOrder() {
     return order;
   }
+
   public abstract String returnPremium();
+
   public abstract String returnDiscountedPremium();
+
   public abstract int returnDiscountedPremiumInt();
 }

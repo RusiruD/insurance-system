@@ -1,28 +1,20 @@
 package nz.ac.auckland.se281;
 
 public class LifeInsurance extends InsurancePolicies {
-    private String age;
- 
- 
+  private String age;
 
   public LifeInsurance(String age, String name, String sumInsured, int amountPolicies, int order) {
-    super(sumInsured,name,order,amountPolicies);
+    super(sumInsured, name, order, amountPolicies);
     this.age = age;
-    
-    
   }
 
-  
-
-  
-
-  
   @Override
   public String returnPremium() {
     int ageInt = Integer.parseInt(age);
     double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
     return Integer.toString((int) premium);
   }
+
   @Override
   public String returnDiscountedPremium() {
     int ageInt = Integer.parseInt(age);
@@ -44,6 +36,7 @@ public class LifeInsurance extends InsurancePolicies {
     discountedPremium = (discount * premium);
     return Integer.toString((int) discountedPremium);
   }
+
   @Override
   public int returnDiscountedPremiumInt() {
 
@@ -69,6 +62,3 @@ public class LifeInsurance extends InsurancePolicies {
     return (int) discountedPremium;
   }
 }
-
-    
-
