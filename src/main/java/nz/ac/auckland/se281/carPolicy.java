@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class CarPolicy extends Policies {
+public class carPolicy extends policies {
   private String name;
   private String sumInsured;
   private String makeModel;
@@ -10,7 +10,7 @@ public class CarPolicy extends Policies {
   private int age;
   private int order;
 
-  public CarPolicy(
+  public carPolicy(
       String name,
       String sumInsured,
       String makeModel,

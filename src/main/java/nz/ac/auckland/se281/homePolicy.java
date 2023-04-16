@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class HomePolicy extends Policies {
+public class homePolicy extends policies {
   private String name;
   private String sumInsured;
   private String adress;
@@ -8,7 +8,7 @@ public class HomePolicy extends Policies {
   private int amountPolicies;
   private int order;
 
-  public HomePolicy(
+  public homePolicy(
       String name, String sumInsured, String adress, String rental, int amountPolicies, int order) {
     super(sumInsured);
     this.name = name;

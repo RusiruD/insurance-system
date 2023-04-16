@@ -7,10 +7,10 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class InsuranceSystem {
 
   // create array lists which will contain profiles and policies
-  ArrayList<Profile> profiles;
-  ArrayList<CarPolicy> carPolicies;
-  ArrayList<HomePolicy> homePolicies;
-  ArrayList<LifePolicy> lifePolicies;
+  ArrayList<profile> profiles;
+  ArrayList<carPolicy> carPolicies;
+  ArrayList<homePolicy> homePolicies;
+  ArrayList<lifePolicy> lifePolicies;
 
   public InsuranceSystem() {
     profiles = new ArrayList<>();
@@ -176,7 +176,7 @@ public class InsuranceSystem {
             + userName.substring(1, userName.length()).toLowerCase());
 
     // creates new profile named newProfile with username and age inputted
-    Profile newProfile = new Profile(userName, age, 0, 0);
+    profile newProfile = new profile(userName, age, 0, 0);
 
     // sets contains variable to 0
     int contains = 0;
@@ -338,8 +338,8 @@ public class InsuranceSystem {
       // a new instance of a class is created for each policy
       if (typeString.equals("home")) {
         profiles.get(profileNumber).addedPolicy();
-        HomePolicy policy =
-            new HomePolicy(
+        homePolicy policy =
+            new homePolicy(
                 userName,
                 options[0],
                 options[1],
@@ -350,8 +350,8 @@ public class InsuranceSystem {
       }
       if (typeString.equals("car")) {
         profiles.get(profileNumber).addedPolicy();
-        CarPolicy policy =
-            new CarPolicy(
+        carPolicy policy =
+            new carPolicy(
                 userName,
                 options[0],
                 options[1],
@@ -376,8 +376,8 @@ public class InsuranceSystem {
       // a new life policy is created only if a previous one doesnt exist
       if (typeString.equals("life") && contains == 0) {
         profiles.get(profileNumber).addedPolicy();
-        LifePolicy policy =
-            new LifePolicy(
+        lifePolicy policy =
+            new lifePolicy(
                 profiles.get(profileNumber).returnAge(),
                 userName,
                 options[0],

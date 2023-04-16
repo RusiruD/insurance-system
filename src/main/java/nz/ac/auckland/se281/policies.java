@@ -1,9 +1,9 @@
 package nz.ac.auckland.se281;
 
-public abstract class Policies extends Object {
+public abstract class policies extends Object {
   private String sumInsured;
 
-  public Policies(String sumInsured) {
+  public policies(String sumInsured) {
     this.sumInsured = sumInsured;
   }
 

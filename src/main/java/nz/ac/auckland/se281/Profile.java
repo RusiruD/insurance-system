@@ -1,13 +1,13 @@
 package nz.ac.auckland.se281;
 
-public class Profile {
+public class profile {
 
   private String userName;
   private String age;
   private int loaded;
   private int policies;
 
-  public Profile(String userName, String age, int loaded, int policies) {
+  public profile(String userName, String age, int loaded, int policies) {
 
     this.loaded = loaded;
     this.userName = userName;
