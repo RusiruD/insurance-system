@@ -3,17 +3,17 @@ package nz.ac.auckland.se281;
 public class HomeInsurance extends InsurancePolicies{
     private String adress;
     private String rental;
-    private int amountPolicies;
+    
    
   
     public HomeInsurance(
         String name, String sumInsured, String adress, String rental, int amountPolicies, int order) {
-      super(sumInsured,name, order);
+      super(sumInsured,name, order, amountPolicies);
       
       
       this.adress = adress;
       this.rental = rental;
-      this.amountPolicies = amountPolicies;
+     
       
     }
   
@@ -25,10 +25,8 @@ public class HomeInsurance extends InsurancePolicies{
       return adress;
     }
   
-    public void amountPolicies(int n) {
-      amountPolicies = n;
-    }
-  
+    
+    @Override
     public String returnPremium() {
   
       int baseRate = 0;
@@ -43,7 +41,7 @@ public class HomeInsurance extends InsurancePolicies{
       int premium = (Integer.parseInt(sumInsured) / baseRate);
       return Integer.toString(premium);
     }
-  
+    @Override  
     public String returnDiscountedPremium() {
   
       // sets variables to defaul values
@@ -76,7 +74,7 @@ public class HomeInsurance extends InsurancePolicies{
       discountedPremium = (premium * discount);
       return Integer.toString((int) discountedPremium);
     }
-  
+    @Override
     public int returnDiscountedPremiumInt() {
   
       double discountedPremium = 0;

@@ -5,7 +5,7 @@ public class CarInsurance extends InsurancePolicies {
     private String makeModel;
     private String licencePlate;
     private String breakdown;
-    private int amountPolicies;
+   
     private int age;
     
   
@@ -18,13 +18,13 @@ public class CarInsurance extends InsurancePolicies {
         int amountPolicies,
         int age,
         int order) {
-      super(sumInsured,name,order);
+      super(sumInsured,name,order,amountPolicies);
       
       
       this.makeModel = makeModel;
       this.licencePlate = licencePlate;
       this.breakdown = breakdown;
-      this.amountPolicies = amountPolicies;
+      
       this.age = age;
       
     }
@@ -33,10 +33,8 @@ public class CarInsurance extends InsurancePolicies {
   
     
   
-    public void amountPolicies(int n) {
-      amountPolicies = n;
-    }
-  
+    
+    @Override
     public String returnPremium() {
       double premium = -1;
       int breakdownCover = 0;
@@ -53,7 +51,7 @@ public class CarInsurance extends InsurancePolicies {
       premium = (breakdownCover + (baseRate * Double.parseDouble(sumInsured)));
       return Integer.toString((int) premium);
     }
-  
+    @Override
     public String returnDiscountedPremium() {
       double premium = -1;
       int breakdownCover = 0;
@@ -83,7 +81,7 @@ public class CarInsurance extends InsurancePolicies {
   
       return Integer.toString((int) premium);
     }
-  
+    @Override
     public int returnDiscountedPremiumInt() {
       double premium = -1;
       int breakdownCover = 0;
