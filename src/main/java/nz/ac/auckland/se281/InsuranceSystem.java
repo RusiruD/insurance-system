@@ -191,16 +191,13 @@ public class InsuranceSystem {
     // if the name is already contained in the database
     // and if the username length is greater than or equal to 3 and if so adds the profile to the
     // database
-    if (newProfile.returnIntAge() >= 0
-        && contains == 0
-        && newProfile.returnUserName().length() >= 3) 
-        {
+    if (newProfile.returnIntAge() >= 0 && contains == 0 && newProfile.returnUserName().length() >= 3) {
 
       MessageCli.PROFILE_CREATED.printMessage(
           userName, age, "New profile created for %s with age %s.");
       // adds new user profile to profiles array
       profiles.add(newProfile);
-        }
+    }
 
     // if the user name length is less than 3 characters an error message is printed
     else if (newProfile.returnUserName().length() < 3) {
@@ -335,8 +332,8 @@ public class InsuranceSystem {
       }
     // else a new policy is created
     else {
-      MessageCli.NEW_POLICY_CREATED.printMessage(
-          typeString, userName, "New %s policy created for %s.");
+      
+      MessageCli.NEW_POLICY_CREATED.printMessage(typeString, userName, "New %s policy created for %s.");
 
       // a new instance of a class is created for each policy
       if (typeString.equals("home")) {

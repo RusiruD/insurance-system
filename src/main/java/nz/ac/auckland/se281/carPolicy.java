@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class carPolicy extends policies {
+public class carPolicy extends Policies {
   private String name;
   private String sumInsured;
   private String makeModel;

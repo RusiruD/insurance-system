@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class lifePolicy extends policies {
+public class lifePolicy extends Policies {
   private String name;
   private String sumInsured;
   private String age;
