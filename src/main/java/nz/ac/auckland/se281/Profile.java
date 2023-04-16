@@ -24,6 +24,7 @@ public class Profile {
     return age;
   }
   // returns the age converted to an integer
+
   public int returnIntAge() {
 
     int ageInteger = Integer.parseInt(age);

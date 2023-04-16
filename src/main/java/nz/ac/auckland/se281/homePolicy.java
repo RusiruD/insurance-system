@@ -36,22 +36,30 @@ public class homePolicy extends policies {
   }
 
   public String returnPremium() {
+
     int baseRate = 0;
+    // checks if the home policy is for a rental
     if (rental.contains("y")) {
       baseRate = 50;
 
     } else {
       baseRate = 100;
     }
+    // calculates the premium the user has to pay
     int premium = (Integer.parseInt(sumInsured) / baseRate);
     return Integer.toString(premium);
   }
 
   public String returnDiscountedPremium() {
+
+    // sets variables to defaul values
     double discountedPremium = 0;
     double discount = 1;
     int premium = 0;
     int baseRate = 0;
+
+    // checks if the home policy is for a rental
+    // and if so sets the base rate appropriately
     if (rental.contains("y")) {
       baseRate = 50;
 
@@ -60,6 +68,8 @@ public class homePolicy extends policies {
     }
     premium = (Integer.parseInt(sumInsured) / baseRate);
 
+    // checks how many policies the profile has and sets the
+    // appropriate discount to the premium they pay
     if (amountPolicies == 2) {
       discount = 0.9;
 
@@ -79,6 +89,7 @@ public class homePolicy extends policies {
     double discount = 1;
     int premium = 0;
     int baseRate = 0;
+    // checks if the home policy is for a rental
     if (rental.contains("y")) {
       baseRate = 50;
 
@@ -86,6 +97,9 @@ public class homePolicy extends policies {
       baseRate = 100;
     }
     premium = (Integer.parseInt(sumInsured) / baseRate);
+
+    // checks how many policies the profile has and sets the
+    // appropriate discount to the premium they pay
 
     if (amountPolicies == 2) {
       discount = 0.9;

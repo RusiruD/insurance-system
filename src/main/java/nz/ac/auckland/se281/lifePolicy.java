@@ -37,8 +37,12 @@ public class lifePolicy extends policies {
   public String returnDiscountedPremium() {
     int ageInt = Integer.parseInt(age);
     double discount = 1;
+    // calculates the premium using the age of the user and the sum of insurance
     double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
     double discountedPremium = premium;
+
+    // checks the amount of policies the profile has and
+    // calculates the discount applied to the premium based on this
     if (amountPolicies == 2) {
       discount = 0.9;
     } else if (amountPolicies == 3) {
@@ -52,10 +56,16 @@ public class lifePolicy extends policies {
   }
 
   public int returnDiscountedPremiumInt() {
+
     int ageInt = Integer.parseInt(age);
     double discount = 1;
+
+    // calculates the premium using the age of the user and the sum of insurance
     double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
     double discountedPremium = premium;
+
+    // checks the amount of policies the profile has and
+    // calculates the discount applied to the premium based on this
     if (amountPolicies == 2) {
       discount = 0.9;
     } else if (amountPolicies == 3) {
