@@ -20,8 +20,8 @@ public class LifeInsurance extends InsurancePolicies {
     int ageInt = Integer.parseInt(age);
     double discount = 1;
     // calculates the premium using the age of the user and the sum of insurance
-    double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
-    double discountedPremium = premium;
+    //double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
+    //double discountedPremium = premium;
 
     // checks the amount of policies the profile has and
     // calculates the discount applied to the premium based on this
@@ -30,35 +30,36 @@ public class LifeInsurance extends InsurancePolicies {
     } else if (amountPolicies == 3) {
       discount = 0.8;
     } else {
-      discountedPremium = 1;
+      discount= 1;
     }
 
-    discountedPremium = (discount * premium);
+    double discountedPremium = (discount * (Integer.parseInt(this.returnPremium())));
     return Integer.toString((int) discountedPremium);
   }
 
   @Override
   public int returnDiscountedPremiumInt() {
 
-    int ageInt = Integer.parseInt(age);
-    double discount = 1;
+    //int ageInt = Integer.parseInt(age);
+    //double discount = 1;
 
     // calculates the premium using the age of the user and the sum of insurance
-    double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
-    double discountedPremium = premium;
+    //double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));
+    //double discountedPremium = premium;
 
     // checks the amount of policies the profile has and
     // calculates the discount applied to the premium based on this
-    if (amountPolicies == 2) {
-      discount = 0.9;
-    } else if (amountPolicies == 3) {
-      discount = 0.8;
-    } else {
-      discountedPremium = 1;
-    }
+    //if (amountPolicies == 2) {
+      //discount = 0.9;
+    //} //else if (amountPolicies == 3) {
+     // discount = 0.8;
+    //} else {
+    //  discountedPremium = 1;
+    //}
 
-    discountedPremium = (discount * premium);
+   // discountedPremium = (discount * premium);
 
-    return (int) discountedPremium;
+    //return (int) discountedPremium;
+     return Integer.parseInt(this.returnDiscountedPremium());
   }
 }

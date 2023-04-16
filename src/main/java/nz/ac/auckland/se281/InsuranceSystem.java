@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281;
 
-
 import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
@@ -192,8 +191,9 @@ public class InsuranceSystem {
     // if the name is already contained in the database
     // and if the username length is greater than or equal to 3 and if so adds the profile to the
     // database
-    if (newProfile.returnIntAge() >= 0 && contains == 0 && 
-      newProfile.returnUserName().length() >= 3) {
+    if (newProfile.returnIntAge() >= 0
+        && contains == 0
+        && newProfile.returnUserName().length() >= 3) {
 
       MessageCli.PROFILE_CREATED.printMessage(
           userName, age, "New profile created for %s with age %s.");
@@ -332,12 +332,12 @@ public class InsuranceSystem {
           userName, "%s is over the age limit. No policy was created.");
       return;
 
-      }
+    }
     // else a new policy is created
     else {
-      
-      MessageCli.NEW_POLICY_CREATED.printMessage(typeString, 
-      userName, "New %s policy created for %s.");
+
+      MessageCli.NEW_POLICY_CREATED.printMessage(
+          typeString, userName, "New %s policy created for %s.");
 
       // a new instance of a class is created for each policy
       if (typeString.equals("home")) {

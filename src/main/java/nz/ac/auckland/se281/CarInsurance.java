@@ -47,19 +47,15 @@ public class CarInsurance extends InsurancePolicies {
   @Override
   public String returnDiscountedPremium() {
     double premium = -1;
-    int breakdownCover = 0;
+    
     double discount = 0;
-    double baseRate = 0.15;
+   
     // if the user wants breakdown cover an additional fee is added
-    if (breakdown.contains("y")) {
-      breakdownCover = 80;
-    }
+    
 
     // depending on the age of the user the base insurance rate is calculated diffrently
 
-    if (age >= 25) {
-      baseRate = 0.1;
-    }
+    
     // depending on the amount of policies the user has a varying discount is placed on their
     // insurance premium
     if (amountPolicies == 2) {
@@ -70,39 +66,39 @@ public class CarInsurance extends InsurancePolicies {
       discount = 1;
     }
     // the discount is applied to the premium and the breakdown cover fee
-    premium = (discount * (breakdownCover + (baseRate * Double.parseDouble(sumInsured))));
-
+    premium = (discount * Double.parseDouble(this.returnPremium()));
     return Integer.toString((int) premium);
   }
 
   @Override
   public int returnDiscountedPremiumInt() {
-    double premium = -1;
-    int breakdownCover = 0;
-    double discount = 0;
-    double baseRate = 0.15;
+    //double premium = -1;
+    //int breakdownCover = 0;
+   // double discount = 0;
+    //double baseRate = 0.15;
 
     // if the user wants breakdown cover an additional fee is added
-    if (breakdown.contains("y")) {
-      breakdownCover = 80;
-    }
+    //if (breakdown.contains("y")) {
+      //breakdownCover = 80;
+    //}
     // depending on the age of the user the base insurance rate is calculated diffrently
-    if (age >= 25) {
-      baseRate = 0.1;
-    }
+    //if (age >= 25) {
+      //baseRate = 0.1;
+   // }
     // depending on the amount of policies the user has a varying discount is placed on their
     // insurance premium
-    if (amountPolicies == 2) {
-      discount = 0.9;
-    } else if (amountPolicies == 3) {
-      discount = 0.8;
-    } else {
-      discount = 1;
-    }
+    //if (amountPolicies == 2) {
+      //discount = 0.9;
+   // } else if (amountPolicies == 3) {
+    //  discount = 0.8;
+    //} else {
+     // discount = 1;
+    //}
     // the discount is applied to the premium and the breakdown cover fee
-    premium = (discount * (breakdownCover + (baseRate * Double.parseDouble(sumInsured))));
+    //premium = (discount * (breakdownCover + (baseRate * Double.parseDouble(sumInsured))));
 
-    return (int) premium;
+   // return (int) premium;
+   return Integer.parseInt(this.returnDiscountedPremium());
   }
 
   public String returnmakeModel() {
