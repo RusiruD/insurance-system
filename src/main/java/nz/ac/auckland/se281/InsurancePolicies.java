@@ -34,4 +34,8 @@ public abstract class InsurancePolicies extends Object {
   public abstract String returnDiscountedPremium();
 
   public abstract int returnDiscountedPremiumInt();
+
+  public void printOne(){
+    System.out.println("1");
+  }
 }

@@ -111,6 +111,7 @@ public class HomeInsurance extends InsurancePolicies{
 
       return Integer.parseInt(this.returnDiscountedPremium());
     }
+    
   }
   
     

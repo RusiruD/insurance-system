@@ -104,4 +104,5 @@ public class CarInsurance extends InsurancePolicies {
   public String returnMakeModel() {
     return makeModel;
   }
+  
 }

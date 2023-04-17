@@ -62,4 +62,8 @@ public class LifeInsurance extends InsurancePolicies {
     //return (int) discountedPremium;
      return Integer.parseInt(this.returnDiscountedPremium());
   }
+
+  
+  
+ 
 }
