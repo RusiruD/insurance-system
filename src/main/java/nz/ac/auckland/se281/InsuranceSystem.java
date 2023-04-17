@@ -59,15 +59,15 @@ public class InsuranceSystem {
 
         // checks if the profile its found has only 1 insurance policy and if so sets string
         // variable so output statement is grammatically correct
-        if (profiles.get(i).returnpolicies() == 1) {
+        if (profiles.get(i).returnPolicies() == 1) {
           pluralPolicies = "y";
         }
 
         // 3 array lists are created which will contain the positions within the respective policy
         // type array list the profiles policy is in
-        ArrayList<Integer> carpolicyspositions = new ArrayList<>();
-        ArrayList<Integer> lifepolicyspositions = new ArrayList<>();
-        ArrayList<Integer> homepolicyspositions = new ArrayList<>();
+        ArrayList<Integer> carPolicysPositions = new ArrayList<>();
+        ArrayList<Integer> lifePolicysPositions = new ArrayList<>();
+        ArrayList<Integer> homePolicysPositions = new ArrayList<>();
 
         int totalPremium = 0;
         // sets variable stating the amount of policies the profile has into each policys class
@@ -80,8 +80,8 @@ public class InsuranceSystem {
           if (homePolicies.get(k).returnName().equals(profiles.get(i).returnUserName())) {
             homePolicies
                 .get(k)
-                .amountPolicies(Integer.parseInt(profiles.get(i).returnPoliciesString()));
-            homepolicyspositions.add(k);
+                .amountPolicies(profiles.get(i).returnPolicies());
+            homePolicysPositions.add(k);
 
             totalPremium = totalPremium + homePolicies.get(k).returnDiscountedPremiumInt();
           }
@@ -94,8 +94,8 @@ public class InsuranceSystem {
           if (lifePolicies.get(k).returnName().equals(profiles.get(i).returnUserName())) {
             lifePolicies
                 .get(k)
-                .amountPolicies(Integer.parseInt(profiles.get(i).returnPoliciesString()));
-            lifepolicyspositions.add(k);
+                .amountPolicies(profiles.get(i).returnPolicies());
+            lifePolicysPositions.add(k);
 
             totalPremium = totalPremium + lifePolicies.get(k).returnDiscountedPremiumInt();
           }
@@ -108,8 +108,8 @@ public class InsuranceSystem {
           if (carPolicies.get(k).returnName().equals(profiles.get(i).returnUserName())) {
             carPolicies
                 .get(k)
-                .amountPolicies(Integer.parseInt(profiles.get(i).returnPoliciesString()));
-            carpolicyspositions.add(k);
+                .amountPolicies(profiles.get(i).returnPolicies());
+            carPolicysPositions.add(k);
 
             totalPremium = totalPremium + carPolicies.get(k).returnDiscountedPremiumInt();
           }
@@ -126,39 +126,42 @@ public class InsuranceSystem {
             " %s%s: %s, %s, %s polic%s for a total of $%s");
 
         // the details of the policys the profile has are printed out
-        for (int k = 1; k < profiles.get(i).returnpolicies() + 1; k++) {
+        for (int k = 1; k < profiles.get(i).returnPolicies() + 1; k++) {
 
-          for (int l = 0; l < carpolicyspositions.size(); l++) {
+          for (int l = 0; l < carPolicysPositions.size(); l++) {
 
-            if (carPolicies.get(carpolicyspositions.get(l)).returnOrder() == k) {
+            //goes through the carPolicysPositions homePolicyPositions and lifePolicyPositions arrays 
+            //to make sure to print out the poliocys in the order they were added to the profile
+
+            if (carPolicies.get(carPolicysPositions.get(l)).returnOrder() == k) {
 
               MessageCli.PRINT_DB_CAR_POLICY.printMessage(
-                  carPolicies.get(carpolicyspositions.get(l)).returnmakeModel(),
-                  carPolicies.get(carpolicyspositions.get(l)).returnSumInsured(),
-                  carPolicies.get(carpolicyspositions.get(l)).returnPremium(),
-                  carPolicies.get(carpolicyspositions.get(l)).returnDiscountedPremium(),
+                  carPolicies.get(carPolicysPositions.get(l)).returnMakeModel(),
+                  carPolicies.get(carPolicysPositions.get(l)).returnSumInsured(),
+                  carPolicies.get(carPolicysPositions.get(l)).returnPremium(),
+                  carPolicies.get(carPolicysPositions.get(l)).returnDiscountedPremium(),
                   "\tCar Policy (%s, Sum Insured: $%s, Premium: $%s -> $%s)");
 
             } else {
             }
           }
-          for (int l = 0; l < lifepolicyspositions.size(); l++) {
-            if (lifePolicies.get(lifepolicyspositions.get(l)).returnOrder() == k) {
+          for (int l = 0; l < lifePolicysPositions.size(); l++) {
+            if (lifePolicies.get(lifePolicysPositions.get(l)).returnOrder() == k) {
               MessageCli.PRINT_DB_LIFE_POLICY.printMessage(
-                  lifePolicies.get(lifepolicyspositions.get(l)).returnSumInsured(),
-                  lifePolicies.get(lifepolicyspositions.get(l)).returnPremium(),
-                  lifePolicies.get(lifepolicyspositions.get(l)).returnDiscountedPremium(),
+                  lifePolicies.get(lifePolicysPositions.get(l)).returnSumInsured(),
+                  lifePolicies.get(lifePolicysPositions.get(l)).returnPremium(),
+                  lifePolicies.get(lifePolicysPositions.get(l)).returnDiscountedPremium(),
                   "\tLife Policy (Sum Insured: $%s, Premium: $%s -> $%s)");
             }
           }
 
-          for (int l = 0; l < homepolicyspositions.size(); l++) {
-            if (homePolicies.get(homepolicyspositions.get(l)).returnOrder() == k) {
+          for (int l = 0; l < homePolicysPositions.size(); l++) {
+            if (homePolicies.get(homePolicysPositions.get(l)).returnOrder() == k) {
               MessageCli.PRINT_DB_HOME_POLICY.printMessage(
-                  homePolicies.get(homepolicyspositions.get(l)).returnAdress(),
-                  homePolicies.get(homepolicyspositions.get(l)).returnSumInsured(),
-                  homePolicies.get(homepolicyspositions.get(l)).returnPremium(),
-                  homePolicies.get(homepolicyspositions.get(l)).returnDiscountedPremium(),
+                  homePolicies.get(homePolicysPositions.get(l)).returnAdress(),
+                  homePolicies.get(homePolicysPositions.get(l)).returnSumInsured(),
+                  homePolicies.get(homePolicysPositions.get(l)).returnPremium(),
+                  homePolicies.get(homePolicysPositions.get(l)).returnDiscountedPremium(),
                   "\tHome Policy (%s, Sum Insured: $%s, Premium: $%s -> $%s)");
             }
           }
@@ -340,6 +343,9 @@ public class InsuranceSystem {
           typeString, userName, "New %s policy created for %s.");
 
       // a new instance of a class is created for each policy
+
+      //the order field is filled by getting the amount of previous policies the profile 
+      //already has so the policy has the attribute of which place it comes in the profiles policys
       if (typeString.equals("home")) {
         profiles.get(profileNumber).addedPolicy();
         HomeInsurance policy =
@@ -349,7 +355,7 @@ public class InsuranceSystem {
                 options[1],
                 options[2],
                 0,
-                profiles.get(profileNumber).returnpolicies());
+                profiles.get(profileNumber).returnPolicies());
         homePolicies.add(policy);
       }
       if (typeString.equals("car")) {
@@ -363,7 +369,7 @@ public class InsuranceSystem {
                 options[3],
                 0,
                 profiles.get(profileNumber).returnIntAge(),
-                profiles.get(profileNumber).returnpolicies());
+                profiles.get(profileNumber).returnPolicies());
         carPolicies.add(policy);
       }
 
@@ -386,7 +392,9 @@ public class InsuranceSystem {
                 userName,
                 options[0],
                 0,
-                profiles.get(profileNumber).returnpolicies());
+                profiles.get(profileNumber).returnPolicies());
+
+                
 
         lifePolicies.add(policy);
       } else if (typeString.equals("life") && contains == 1) {

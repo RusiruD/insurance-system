@@ -17,7 +17,7 @@ public class LifeInsurance extends InsurancePolicies {
 
   @Override
   public String returnDiscountedPremium() {
-    int ageInt = Integer.parseInt(age);
+    
     double discount = 1;
     // calculates the premium using the age of the user and the sum of insurance
     //double premium = (0.01 * ((0.01 * ageInt) + 1) * Double.parseDouble(sumInsured));

@@ -101,7 +101,7 @@ public class CarInsurance extends InsurancePolicies {
    return Integer.parseInt(this.returnDiscountedPremium());
   }
 
-  public String returnmakeModel() {
+  public String returnMakeModel() {
     return makeModel;
   }
 }

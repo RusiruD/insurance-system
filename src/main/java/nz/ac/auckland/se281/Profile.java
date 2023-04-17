@@ -15,10 +15,7 @@ public class Profile {
     this.policies = policies;
   }
 
-  public void printDetails() {
-
-    System.out.println(this.userName + "dsas" + this.age);
-  }
+  
 
   public String returnAge() {
     return age;
@@ -59,7 +56,7 @@ public class Profile {
     this.policies = this.policies + 1;
   }
 
-  public int returnpolicies() {
+  public int returnPolicies() {
 
     return this.policies;
   }
