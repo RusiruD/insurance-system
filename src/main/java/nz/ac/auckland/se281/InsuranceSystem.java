@@ -10,14 +10,13 @@ public class InsuranceSystem {
   ArrayList<CarInsurance> carPolicies;
   ArrayList<HomeInsurance> homePolicies;
   ArrayList<LifeInsurance> lifePolicies;
-  
 
   public InsuranceSystem() {
     profiles = new ArrayList<>();
     carPolicies = new ArrayList<>();
     homePolicies = new ArrayList<>();
     lifePolicies = new ArrayList<>();
-   
+
     // Only this constructor can be used (if you need to initialise fields).
   }
 
@@ -77,15 +76,10 @@ public class InsuranceSystem {
         // checks if the profile has any home policies so it can add the cost to the profiles total
         // premium
         // and to add the position of this home policy position to an array
-       
-
-       
-
-       
 
         for (int k = 0; k < homePolicies.size(); k++) {
 
-          if (checkIfNameContained((homePolicies.get(k)),i)) {
+          if (checkIfNameContained((homePolicies.get(k)), i)) {
             homePolicies.get(k).amountPolicies(profiles.get(i).returnPolicies());
             homePolicysPositions.add(k);
 
@@ -99,7 +93,7 @@ public class InsuranceSystem {
         // and to add the position of this life policy position to an array
         for (int k = 0; k < lifePolicies.size(); k++) {
 
-          if (checkIfNameContained(lifePolicies.get(k),i)) {
+          if (checkIfNameContained(lifePolicies.get(k), i)) {
             lifePolicies.get(k).amountPolicies(profiles.get(i).returnPolicies());
             lifePolicysPositions.add(k);
 
@@ -111,19 +105,13 @@ public class InsuranceSystem {
         // and to add the position of this car policy position to an array
         for (int k = 0; k < carPolicies.size(); k++) {
 
-          if (checkIfNameContained(carPolicies.get(k),i)) {
+          if (checkIfNameContained(carPolicies.get(k), i)) {
             carPolicies.get(k).amountPolicies(profiles.get(i).returnPolicies());
             carPolicysPositions.add(k);
 
             totalPremium = totalPremium + carPolicies.get(k).returnDiscountedPremiumInt();
           }
         }
-
-        
-        
-
-       //random(carPolicies.get(0));
-       //random(homePolicies.get(1));
 
         // the name,age,amount of policies and total premium are printed out
         MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
@@ -166,7 +154,7 @@ public class InsuranceSystem {
                   "\tLife Policy (Sum Insured: $%s, Premium: $%s -> $%s)");
             }
           }
-         
+
           for (int l = 0; l < homePolicysPositions.size(); l++) {
             if (homePolicies.get(homePolicysPositions.get(l)).returnOrder() == k) {
               MessageCli.PRINT_DB_HOME_POLICY.printMessage(
@@ -182,15 +170,11 @@ public class InsuranceSystem {
     }
   }
 
-  
- 
-   
-private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i){
-  
- return typePolicy.returnName().equals(profiles.get(i).returnUserName());
+  private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i) {
 
-  
-}
+    return typePolicy.returnName().equals(profiles.get(i).returnUserName());
+  }
+
   public void createNewProfile(String userName, String age) {
 
     // formats the inputted userName into titlecase where the first letter is capitalised only
@@ -349,7 +333,8 @@ private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i){
     // if no profile is loaded an error message is outputted
     if (profilesLoaded == 0) {
       MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage(
-          "Need to load a profile in order to create a policy.");/** */
+          "Need to load a profile in order to create a policy.");
+      /** */
 
       // if the policy type is a life policy and the user is above 100 a error message is output
     } else if (profiles.get(profileNumber).returnIntAge() > 100 && typeString.equals("life")) {
@@ -378,9 +363,8 @@ private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i){
                 options[2],
                 0,
                 profiles.get(profileNumber).returnPolicies());
-               
+
         homePolicies.add(policy);
-        
       }
       if (typeString.equals("car")) {
         profiles.get(profileNumber).addedPolicy();
@@ -394,9 +378,8 @@ private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i){
                 0,
                 profiles.get(profileNumber).returnIntAge(),
                 profiles.get(profileNumber).returnPolicies());
-                
+
         carPolicies.add(policy);
-        
       }
 
       // checks if the user already hads a life policy
@@ -419,10 +402,9 @@ private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i){
                 options[0],
                 0,
                 profiles.get(profileNumber).returnPolicies());
-                
 
         lifePolicies.add(policy);
-        
+
       } else if (typeString.equals("life") && contains == 1) {
         MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(
             profiles.get(profileNumber).returnUserName(),
