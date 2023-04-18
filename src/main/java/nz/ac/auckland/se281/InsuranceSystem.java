@@ -285,17 +285,18 @@ public class InsuranceSystem {
     int deleted = 0;
     // iterates through profiles arraylist to find the profile to delete
     for (int i = 0; i < profiles.size(); i++) {
-      if (profiles.get(i).returnUserName().contains(userName)
+      if (profiles.get(i).returnUserName().equals(userName)
           && profiles.get(i).returnProfileLoaded() == 0) {
         deleted = 1;
         MessageCli.PROFILE_DELETED.printMessage(userName, "Profile deleted for %s.");
         profiles.remove(i);
       }
       // if the profile is found but is loaded it isnt deleted and a message is output
-      else if (profiles.get(i).returnUserName().contains(userName)
+      else if (profiles.get(i).returnUserName().equals(userName)
           && profiles.get(i).returnProfileLoaded() == 1) {
         MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(
             userName, "Cannot delete profile for %s while loaded. No profile was deleted.");
+            return;
       }
     }
     // if the profile was not found a message is output to user saying it wasnt found
