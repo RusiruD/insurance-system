@@ -21,7 +21,7 @@ public class HomeInsurance extends InsurancePolicies {
 
     int baseRate = 0;
     // checks if the home policy is for a rental
-    if (rental.contains("y")) {
+    if (rental.contains("y") || rental.contains("Y") ) {
       baseRate = 50;
 
     } else {
@@ -35,16 +35,16 @@ public class HomeInsurance extends InsurancePolicies {
   @Override
   public String returnDiscountedPremium() {
 
-    // sets variables to defaul values
-    // double discountedPremium = 0;
+    // sets variables to default values
+
     double discount = 1;
     int premium = 0;
-    
 
+    // calls return premium function to get premium
     premium = (Integer.parseInt(this.returnPremium()));
 
-    // checks how many policies the profile has and sets the
-    // appropriate discount to the premium they pay
+    /*  checks how many policies the profile has and sets the
+    appropriate discount to the premium they pay */
     if (amountPolicies == 2) {
       discount = 0.9;
 
@@ -54,16 +54,15 @@ public class HomeInsurance extends InsurancePolicies {
       discount = 1;
       ;
     }
-    // discountedPremium = (premium * discount);
-    // return Integer.toString((int) discountedPremium);
+
+    // returns premium with discount applied to it as a String
     return Integer.toString((int) (premium * discount));
   }
 
   @Override
   public int returnDiscountedPremiumInt() {
 
-    
-
+    //calls returnDiscountedPremium method to return same value but as an Integer
     return Integer.parseInt(this.returnDiscountedPremium());
   }
 }

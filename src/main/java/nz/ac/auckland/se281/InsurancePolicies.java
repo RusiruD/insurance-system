@@ -18,6 +18,9 @@ public abstract class InsurancePolicies extends Object {
   }
 
   public void amountPolicies(int n) {
+
+    // sets field amountPolicies to inputted variable
+
     amountPolicies = n;
   }
 
@@ -34,8 +37,4 @@ public abstract class InsurancePolicies extends Object {
   public abstract String returnDiscountedPremium();
 
   public abstract int returnDiscountedPremiumInt();
-
-  public void printOne(){
-    System.out.println("1");
-  }
 }

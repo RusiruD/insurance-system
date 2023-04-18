@@ -22,8 +22,9 @@ public class InsuranceSystem {
 
   public void printDatabase() {
 
-    // checks if array list of names of clients is empty and if
-    // so outputs a print statement saying the database has no profiles
+    /*  checks if array list of names of clients is empty and if
+    so outputs a print statement saying the database has no profiles*/
+
     if (profiles.isEmpty()) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
@@ -32,16 +33,14 @@ public class InsuranceSystem {
       // list
       String profileAmount = Integer.toString(profiles.size());
 
-      // checks if the size of the names array list is equal to 1 and if so sets a variable so that
-      // output statements are grammatically accurate
+      /* checks if the size of the names array list is equal to 1 and if so sets a variable so that
+      output statements are grammatically accurate */
       String pluralProfiles = "s";
       if (profiles.size() == 1) {
         pluralProfiles = "";
-
-      } else {
       }
-      // amount of profiles in database is printed
 
+      // amount of profiles in database is printed
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profileAmount, pluralProfiles, ":");
 
       // for loop goes through every profile in the profiles array
@@ -51,62 +50,59 @@ public class InsuranceSystem {
         String asteriks = "";
         String pluralPolicies = "ies";
 
-        // checks if the profiles its trying to print is loaded and if so sets a variable so
-        // asteriks
-        // are outputted in print statement
+        /*  checks if the profiles its trying to print is loaded and if so sets a variable so
+        asteriks are outputted in print statement */
         if (profiles.get(i).returnProfileLoaded() == 1) {
           asteriks = "*** ";
         }
 
-        // checks if the profile its found has only 1 insurance policy and if so sets string
-        // variable so output statement is grammatically correct
+        /*  checks if the profile its found has only 1 insurance policy and if so sets string
+        variable so output statement is grammatically correct */
         if (profiles.get(i).returnPolicies() == 1) {
           pluralPolicies = "y";
         }
 
-        // 3 array lists are created which will contain the positions within the respective policy
-        // type array list the profiles policy is in
+        /*  3 array lists are created which will contain the positions within the respective policy
+        type array list the profiles policy is in */
+
         ArrayList<Integer> carPolicysPositions = new ArrayList<>();
         ArrayList<Integer> lifePolicysPositions = new ArrayList<>();
         ArrayList<Integer> homePolicysPositions = new ArrayList<>();
 
         int totalPremium = 0;
-        // sets variable stating the amount of policies the profile has into each policys class
 
-        // checks if the profile has any home policies so it can add the cost to the profiles total
-        // premium
-        // and to add the position of this home policy position to an array
+        /*  sets variable stating the amount of policies the profile has into each policys class
+        checks if the profile has any home policies so it can add the cost to the profiles total
+         premium and to add the position of this home policy position to an array */
 
         for (int k = 0; k < homePolicies.size(); k++) {
 
           if (checkIfNameContained((homePolicies.get(k)), i)) {
-            homePolicies.get(k).amountPolicies(profiles.get(i).returnPolicies());
+            updateAmountPolicies(homePolicies.get(k), i);
             homePolicysPositions.add(k);
 
             totalPremium = totalPremium + homePolicies.get(k).returnDiscountedPremiumInt();
           }
         }
 
-        // positionAndPremium(homePolicies, homePolicysPositions, null, null)
-        // checks if the profile has any life policies so it can add the cost to the profiles total
-        // premium
-        // and to add the position of this life policy position to an array
+        /*  checks if the profile has any life policies so it can add the cost to the profiles total
+        premium and to add the position of this life policy position to an array */
         for (int k = 0; k < lifePolicies.size(); k++) {
 
           if (checkIfNameContained(lifePolicies.get(k), i)) {
-            lifePolicies.get(k).amountPolicies(profiles.get(i).returnPolicies());
+            updateAmountPolicies(lifePolicies.get(k), i);
             lifePolicysPositions.add(k);
 
             totalPremium = totalPremium + lifePolicies.get(k).returnDiscountedPremiumInt();
           }
         }
-        // checks if the profile has any car policies so it can add the cost to the profiles total
-        // premium
-        // and to add the position of this car policy position to an array
+        /*  checks if the profile has any car policies so it can add the cost to the profiles total
+        premium and to add the position of this car policy position to an array */
         for (int k = 0; k < carPolicies.size(); k++) {
 
           if (checkIfNameContained(carPolicies.get(k), i)) {
-            carPolicies.get(k).amountPolicies(profiles.get(i).returnPolicies());
+            updateAmountPolicies(carPolicies.get(k), i);
+            
             carPolicysPositions.add(k);
 
             totalPremium = totalPremium + carPolicies.get(k).returnDiscountedPremiumInt();
@@ -129,9 +125,8 @@ public class InsuranceSystem {
 
           for (int l = 0; l < carPolicysPositions.size(); l++) {
 
-            // goes through the carPolicysPositions homePolicyPositions and lifePolicyPositions
-            // arrays
-            // to make sure to print out the policys in the order they were added to the profile
+            /*  goes through the carPolicysPositions homePolicyPositions and lifePolicyPositions
+            arrays to make sure to print out the policys in the order they were added to the profile */
 
             if (carPolicies.get(carPolicysPositions.get(l)).returnOrder() == k) {
 
@@ -172,9 +167,22 @@ public class InsuranceSystem {
 
   private boolean checkIfNameContained(InsurancePolicies typePolicy, Integer i) {
 
+    // returns boolean true if the instance of a policy has the same stored name as the current
+    // profile
+
     return typePolicy.returnName().equals(profiles.get(i).returnUserName());
   }
 
+  private void updateAmountPolicies(InsurancePolicies typePolicy, Integer i){
+
+    //updates the amount of policies field in a policy class
+    typePolicy.amountPolicies(profiles.get(i).returnPolicies());
+
+  }
+
+
+
+  
   public void createNewProfile(String userName, String age) {
 
     // formats the inputted userName into titlecase where the first letter is capitalised only
@@ -193,10 +201,10 @@ public class InsuranceSystem {
       }
     }
 
-    // checks if the age of the profile is greater than or equal to 0
-    // if the name is already contained in the database
-    // and if the username length is greater than or equal to 3 and if so adds the profile to the
-    // database
+    /* checks if the age of the profile is greater than or equal to 0
+     if the name is already contained in the database
+     and if the username length is greater than or equal to 3 and if so adds the profile to the
+     database*/
     if (newProfile.returnIntAge() >= 0
         && contains == 0
         && newProfile.returnUserName().length() >= 3) {
@@ -279,7 +287,7 @@ public class InsuranceSystem {
 
   public void deleteProfile(String userName) {
 
-    // format username inputted into titelcase
+    // format username inputted into titlecase
     userName = formatUserName(userName);
 
     int deleted = 0;
@@ -296,7 +304,7 @@ public class InsuranceSystem {
           && profiles.get(i).returnProfileLoaded() == 1) {
         MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(
             userName, "Cannot delete profile for %s while loaded. No profile was deleted.");
-            return;
+        return;
       }
     }
     // if the profile was not found a message is output to user saying it wasnt found
@@ -307,9 +315,13 @@ public class InsuranceSystem {
   }
 
   private String formatUserName(String userName) {
+
+    // formats the username into title case and returns it
+
     userName =
         (userName.substring(0, 1).toUpperCase()
             + userName.substring(1, userName.length()).toLowerCase());
+
     return userName;
   }
 
@@ -352,8 +364,8 @@ public class InsuranceSystem {
 
       // a new instance of a class is created for each policy
 
-      // the order field is filled by getting the amount of previous policies the profile
-      // already has so the policy has the attribute of which place it comes in the profiles policys
+      /*  the order field is filled by getting the amount of previous policies the profile
+       already has so the policy has the attribute of which place it was created for the profile*/
       if (typeString.equals("home")) {
         profiles.get(profileNumber).addedPolicy();
         HomeInsurance policy =
