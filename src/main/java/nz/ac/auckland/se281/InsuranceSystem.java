@@ -176,6 +176,7 @@ public class InsuranceSystem {
   private void updateAmountPolicies(InsurancePolicies typePolicy, Integer i){
 
     //updates the amount of policies field in a policy class
+    
     typePolicy.amountPolicies(profiles.get(i).returnPolicies());
 
   }
@@ -193,20 +194,27 @@ public class InsuranceSystem {
 
     // sets contains variable to 0
     int contains = 0;
-
-    // checks if the username has ever been inputted into the database previously
+    int loaded=0;
+    int profileLocation=0;
+    /*checks if the username has ever been inputted into the database previously and if
+    a profile is loaded currently*/
     for (int i = 0; i < profiles.size(); i++) {
       if (profiles.get(i).returnUserName().contains(newProfile.returnUserName())) {
         contains = 1;
       }
+      if (profiles.get(i).returnProfileLoaded()==1){
+        
+        loaded=1;
+        profileLocation=i;
+      }
     }
 
     /* checks if the age of the profile is greater than or equal to 0
-     if the name is already contained in the database
+     if the name is already contained in the database, if a profile is already loaded
      and if the username length is greater than or equal to 3 and if so adds the profile to the
      database*/
     if (newProfile.returnIntAge() >= 0
-        && contains == 0
+        && contains == 0 && loaded==0
         && newProfile.returnUserName().length() >= 3) {
 
       MessageCli.PROFILE_CREATED.printMessage(
@@ -238,9 +246,16 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(
           userName, "Usernames must be unique. No profile was created for '%s'.");
 
-    } else {
+    } 
+    else if(loaded==1) {
+     
+        MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(profiles.get(profileLocation).returnUserName(),"Cannot create a new profile. First unload the profile for %s.");
+        return;
+        
+      }
+
     }
-  }
+  
 
   public void loadProfile(String userName) {
     // format username inputted by user to title case
