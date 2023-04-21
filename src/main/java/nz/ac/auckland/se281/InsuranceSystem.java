@@ -102,7 +102,7 @@ public class InsuranceSystem {
 
           if (checkIfNameContained(carPolicies.get(k), i)) {
             updateAmountPolicies(carPolicies.get(k), i);
-            
+
             carPolicysPositions.add(k);
 
             totalPremium = totalPremium + carPolicies.get(k).returnDiscountedPremiumInt();
@@ -173,17 +173,13 @@ public class InsuranceSystem {
     return typePolicy.returnName().equals(profiles.get(i).returnUserName());
   }
 
-  private void updateAmountPolicies(InsurancePolicies typePolicy, Integer i){
+  private void updateAmountPolicies(InsurancePolicies typePolicy, Integer i) {
 
-    //updates the amount of policies field in a policy class
-    
+    // updates the amount of policies field in a policy class
+
     typePolicy.amountPolicies(profiles.get(i).returnPolicies());
-
   }
 
-
-
-  
   public void createNewProfile(String userName, String age) {
 
     // formats the inputted userName into titlecase where the first letter is capitalised only
@@ -194,27 +190,28 @@ public class InsuranceSystem {
 
     // sets contains variable to 0
     int contains = 0;
-    int loaded=0;
-    int profileLocation=0;
+    int loaded = 0;
+    int profileLocation = 0;
     /*checks if the username has ever been inputted into the database previously and if
     a profile is loaded currently*/
     for (int i = 0; i < profiles.size(); i++) {
       if (profiles.get(i).returnUserName().contains(newProfile.returnUserName())) {
         contains = 1;
       }
-      if (profiles.get(i).returnProfileLoaded()==1){
-        
-        loaded=1;
-        profileLocation=i;
+      if (profiles.get(i).returnProfileLoaded() == 1) {
+
+        loaded = 1;
+        profileLocation = i;
       }
     }
 
     /* checks if the age of the profile is greater than or equal to 0
-     if the name is already contained in the database, if a profile is already loaded
-     and if the username length is greater than or equal to 3 and if so adds the profile to the
-     database*/
+    if the name is already contained in the database, if a profile is already loaded
+    and if the username length is greater than or equal to 3 and if so adds the profile to the
+    database*/
     if (newProfile.returnIntAge() >= 0
-        && contains == 0 && loaded==0
+        && contains == 0
+        && loaded == 0
         && newProfile.returnUserName().length() >= 3) {
 
       MessageCli.PROFILE_CREATED.printMessage(
@@ -246,16 +243,14 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(
           userName, "Usernames must be unique. No profile was created for '%s'.");
 
-    } 
-    else if(loaded==1) {
-     
-        MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(profiles.get(profileLocation).returnUserName(),"Cannot create a new profile. First unload the profile for %s.");
-        return;
-        
-      }
+    } else if (loaded == 1) {
 
+      MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(
+          profiles.get(profileLocation).returnUserName(),
+          "Cannot create a new profile. First unload the profile for %s.");
+      return;
     }
-  
+  }
 
   public void loadProfile(String userName) {
     // format username inputted by user to title case
@@ -380,7 +375,7 @@ public class InsuranceSystem {
       // a new instance of a class is created for each policy
 
       /*  the order field is filled by getting the amount of previous policies the profile
-       already has so the policy has the attribute of which place it was created for the profile*/
+      already has so the policy has the attribute of which place it was created for the profile*/
       if (typeString.equals("home")) {
         profiles.get(profileNumber).addedPolicy();
         HomeInsurance policy =
@@ -410,7 +405,7 @@ public class InsuranceSystem {
         carPolicies.add(policy);
       }
 
-      // checks if the user already hads a life policy
+      // checks if the user already has a life policy
       int contains = 0;
       for (int i = 0; i < lifePolicies.size(); i++) {
         if (lifePolicies
@@ -433,7 +428,9 @@ public class InsuranceSystem {
 
         lifePolicies.add(policy);
 
-      } else if (typeString.equals("life") && contains == 1) {
+      } 
+      //if a life policy already exists a error message is output
+      else if (typeString.equals("life") && contains == 1) {
         MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(
             profiles.get(profileNumber).returnUserName(),
             "%s already has a life policy. No new policy was created.");
