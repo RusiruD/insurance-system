@@ -243,7 +243,9 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(
           userName, "Usernames must be unique. No profile was created for '%s'.");
 
-    } else if (loaded == 1) {
+    } 
+    //if a profile is already loaded an error message is printed
+    else if (loaded == 1) {
 
       MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(
           profiles.get(profileLocation).returnUserName(),
