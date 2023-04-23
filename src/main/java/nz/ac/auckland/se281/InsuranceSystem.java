@@ -126,7 +126,8 @@ public class InsuranceSystem {
           for (int l = 0; l < carPolicysPositions.size(); l++) {
 
             /*  goes through the carPolicysPositions homePolicyPositions and lifePolicyPositions
-            arrays to make sure to print out the policys in the order they were added to the profile */
+            arrays to make sure to print out the policys in the order
+            they were added to the profile */
 
             if (carPolicies.get(carPolicysPositions.get(l)).returnOrder() == k) {
 
@@ -243,8 +244,8 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(
           userName, "Usernames must be unique. No profile was created for '%s'.");
 
-    } 
-    //if a profile is already loaded an error message is printed
+    }
+    // if a profile is already loaded an error message is printed
     else if (loaded == 1) {
 
       MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(
@@ -430,8 +431,8 @@ public class InsuranceSystem {
 
         lifePolicies.add(policy);
 
-      } 
-      //if a life policy already exists a error message is output
+      }
+      // if a life policy already exists a error message is output
       else if (typeString.equals("life") && contains == 1) {
         MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(
             profiles.get(profileNumber).returnUserName(),
